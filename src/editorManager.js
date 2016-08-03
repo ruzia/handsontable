@@ -322,6 +322,16 @@ function EditorManager(instance, priv, selection) {
     } else {
       activeEditor = void 0;
     }
+
+    // prepare for ime input.
+    if (activeEditor) {
+      instance._registerTimeout(setTimeout(function() {
+        activeEditor.textareaParentStyle.top = '-9999px';
+        activeEditor.textareaParentStyle.left = '-9999px';
+        activeEditor.textareaParentStyle.display = 'block';
+        activeEditor.TEXTAREA.focus();
+      }, 0));
+    }
   };
 
   /**
